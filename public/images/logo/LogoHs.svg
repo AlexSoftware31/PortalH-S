@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="100" viewBox="0 0 300 100">
+  <!-- Círculo con el símbolo musical -->
+  <circle cx="50" cy="50" r="40" fill="#2BB3A3"></circle>
+  <text x="50" y="60" text-anchor="middle" font-family="Georgia, serif" font-size="42" fill="white">𝄞</text>
+  
+  <!-- Texto de la marca -->
+  <text x="110" y="45" font-family="Arial, sans-serif" font-size="20" fill="#155E63" font-weight="bold">
+    HARMONY &amp;
+  </text>
+  <text x="110" y="75" font-family="Arial, sans-serif" font-size="20" fill="#155E63" font-weight="bold">
+    SYMPHONY
+  </text>
+</svg>
