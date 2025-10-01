@@ -34,7 +34,7 @@ const blogData: Blog[] = [
     title: "Composición Avanzada",
     paragraph:
       "El curso está diseñado para potenciar tu creatividad, expandir tu lenguaje musical y darte herramientas para la composición.",
-    image: "/images/blog/composicion.jpg",
+    image: "/images/blog/composicion.png",
     author: {
       name: "Juan Luis Guerra",
       image: "/images/blog/author-03.png",
