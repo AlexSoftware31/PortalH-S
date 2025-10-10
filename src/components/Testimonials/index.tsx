@@ -5,29 +5,29 @@ import SingleTestimonial from "./SingleTestimonial";
 const testimonialData: Testimonial[] = [
   {
     id: 1,
-    name: "Musharof Chy",
-    designation: "Founder @TailGrids",
+    name: "Lucas Sanchez",
+    designation: "Estudiante de Guitarra",
     content:
-      "Our members are so impressed. It's intuitive. It's clean. It's distraction free. If you're building a community.",
-    image: "/images/testimonials/auth-01.png",
+      "Nunca pensé que podría tocar mis primeras canciones tan rápido. El curso es claro y motivador",
+    image: "/images/testimonials/testiMen.jpg",
     star: 5,
   },
   {
     id: 2,
-    name: "Devid Weilium",
-    designation: "Founder @UIdeck",
+    name: "Laura Bisono",
+    designation: "Estudiante de Guitarra",
     content:
-      "Our members are so impressed. It's intuitive. It's clean. It's distraction free. If you're building a community.",
-    image: "/images/testimonials/auth-02.png",
+      "El contenido está muy bien estructurado y puedo practicar a mi propio ritmo. ¡Muy recomendado!",
+    image: "/images/testimonials/TestimonioWomen1.png",
     star: 5,
   },
   {
     id: 3,
-    name: "Lethium Frenci",
-    designation: "Founder @Lineicons",
+    name: "Lea Rodriguez",
+    designation: "Estudiante de Piano",
     content:
-      "Our members are so impressed. It's intuitive. It's clean. It's distraction free. If you're building a community.",
-    image: "/images/testimonials/auth-03.png",
+      "Me encanta cómo explican paso a paso, incluso sin experiencia previa se entiende todo. Excelente plataforma!",
+    image: "/images/testimonials/TestimonioWomen.jpg",
     star: 5,
   },
 ];
