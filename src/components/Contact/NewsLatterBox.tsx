@@ -96,7 +96,7 @@ const NewsLatterBox = () => {
                 y2="10.2511"
                 gradientUnits="userSpaceOnUse"
               >
-                <stop
+                {/* <stop
                   stopColor={theme === "light" ? "#4A6CF7" : "#fff"}
                   stopOpacity="0.62"
                 />
@@ -104,7 +104,7 @@ const NewsLatterBox = () => {
                   offset="1"
                   stopColor={theme === "light" ? "#4A6CF7" : "#fff"}
                   stopOpacity="0"
-                />
+                /> */}
               </linearGradient>
             </defs>
           </svg>
