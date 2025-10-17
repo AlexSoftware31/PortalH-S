@@ -5,7 +5,7 @@ import Breadcrumb from "@/components/Common/Breadcrumb";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Cursos",
+  title: "Harmony & Symphony",
   description: "Aprendizaje personalizado para todos los niveles de entusiastas de la música.",
   // other metadata
 };

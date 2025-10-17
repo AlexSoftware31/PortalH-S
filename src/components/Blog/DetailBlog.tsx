@@ -1,8 +1,12 @@
+"use client";
+
 import { Blog } from "@/types/blog";
 import Image from "next/image";
 import SharePost from "@/components/Blog/SharePost";
 import TagButton from "@/components/Blog/TagButton";
 import Link from "next/link";
+import Modal from "../Modal/modal";
+import { useState } from "react";
 
 const DetailBlog = ({ blog }: { blog: Blog }) => {
   const {
@@ -15,6 +19,9 @@ const DetailBlog = ({ blog }: { blog: Blog }) => {
     description,
     leaning,
   } = blog;
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <>
       <section className="pt-[150px] pb-[120px]">
@@ -255,14 +262,35 @@ const DetailBlog = ({ blog }: { blog: Blog }) => {
                     </span>
                   </div>
                   <div className="mb-6">
-                   
-                    <Link
+                    {/* <Link
                       href="/signin"
                       className="shadow-submit dark:shadow-submit-dark bg-primary hover:bg-primary/90 flex w-full items-center justify-center rounded-xs px-9 py-4 text-base font-medium text-white duration-300"
                     >
                       Iniciar Clases
-                    </Link>
+                    </Link> */}
+                    <button
+                      onClick={() => setIsModalOpen(true)}
+                      className="shadow-submit dark:shadow-submit-dark bg-primary hover:bg-primary/90 flex w-full items-center justify-center rounded-xs px-9 py-4 text-base font-medium text-white duration-300"
+                    >
+                      Iniciar Clases
+                    </button>
                   </div>
+
+                  <Modal
+                    isOpen={isModalOpen}
+                    onClose={() => setIsModalOpen(false)}
+                  >
+                    <h3 className="font-xl mb-10 leading-tight font-bold text-black sm:text-2xl sm:leading-tight lg:text-xl lg:leading-tight xl:text-2xl xl:leading-tight dark:text-white">
+                     ¿Con qué nivel te gustaría comenzar?
+                    </h3>
+
+                    <div className="flex items-center">
+                      <TagButton text="Principiante"  href="/signin"/>
+                      <TagButton text="Intermedio" href="/signin" />
+                      <TagButton text="Avanzado" href="/signin" />
+                    </div>
+                  </Modal>
+
                   <div className="items-center justify-between sm:flex">
                     <div className="mb-5">
                       <h4 className="text-body-color mb-3 text-sm font-medium">

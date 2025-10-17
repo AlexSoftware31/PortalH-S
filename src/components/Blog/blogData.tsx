@@ -3,7 +3,7 @@ import { Blog } from "@/types/blog";
 const blogData: Blog[] = [
   {
     id: 1,
-    title: "Guitarra para Principiantes",
+    title: "Guitarra",
     paragraph:
       "Este curso está diseñado especialmente para principiantes que desean aprender desde cero y desarrollar una base sólida en la guitarra.",
     image: "/images/blog/Guitarra.jpg",
@@ -27,7 +27,7 @@ const blogData: Blog[] = [
   },
   {
     id: 2,
-    title: "Piano Intermedio",
+    title: "Piano",
     paragraph:
       "Este curso está diseñado para quienes ya dominan los fundamentos del piano y desean llevar su interpretación al siguiente nivel.",
     image: "/images/blog/piano.jpg",
@@ -39,7 +39,7 @@ const blogData: Blog[] = [
     tags: ["Musica"],
     publishDate: "10/2025",
     description:
-      "El curso combina teoría aplicada con ejercicios prácticos, diseñados para que avances a tu ritmo y consolides tu técnica.A través de un enfoque práctico y progresivo, desarrollarás nuevas técnicas y ampliarás tu repertorio musical. Al finalizar, habrás mejorado tu destreza pianística, ampliarás tu repertorio y estarás preparado para enfrentar piezas de mayor dificultad.",
+      "El curso combina teoría aplicada con ejercicios prácticos, diseñados para que avances a tu ritmo y consolides tu técnica. A través de un enfoque práctico y progresivo, desarrollarás nuevas técnicas y ampliarás tu repertorio musical. Al finalizar, habrás mejorado tu destreza pianística, ampliarás tu repertorio y estarás preparado para enfrentar piezas de mayor dificultad.",
     leaning: [
       "Escalas y arpegios intermedios para mejorar la agilidad y la digitación.",
       "Acordes complejos y progresiones armónicas más avanzadas.",
@@ -51,7 +51,7 @@ const blogData: Blog[] = [
   },
   {
     id: 3,
-    title: "Composición Avanzada",
+    title: "Composición",
     paragraph:
       "El curso está diseñado para potenciar tu creatividad, expandir tu lenguaje musical y darte herramientas para la composición.",
     image: "/images/blog/composicion.png",
@@ -76,7 +76,7 @@ const blogData: Blog[] = [
   },
   {
     id: 4,
-    title: "Composición Avanzada",
+    title: "Composición",
     paragraph:
       "El curso está diseñado para potenciar tu creatividad, expandir tu lenguaje musical y darte herramientas para la composición.",
     image: "/images/blog/composicion.png",
@@ -101,7 +101,7 @@ const blogData: Blog[] = [
   },
   {
     id: 5,
-    title: "Piano Intermedio",
+    title: "Piano",
     paragraph:
       "Este curso está diseñado para quienes ya dominan los fundamentos del piano y desean llevar su interpretación al siguiente nivel.",
     image: "/images/blog/piano.jpg",
@@ -125,7 +125,7 @@ const blogData: Blog[] = [
   },
   {
     id: 6,
-    title: "Guitarra para Principiantes",
+    title: "Guitarra",
     paragraph:
       "Este curso está diseñado especialmente para principiantes que desean aprender desde cero y desarrollar una base sólida en la guitarra.",
     image: "/images/blog/Guitarra.jpg",

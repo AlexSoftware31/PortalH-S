@@ -4,7 +4,7 @@ import Contact from "@/components/Contact";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contacto",
+  title: "Harmony & Symphony",
   description: "Contacto",
   // other metadata
 };
