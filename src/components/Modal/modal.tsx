@@ -1,5 +1,5 @@
 // components/Modal.tsx
-import React from 'react';
+import React from "react";
 
 type ModalProps = {
   isOpen: boolean;
@@ -13,15 +13,23 @@ export default function Modal({ isOpen, onClose, children }: ModalProps) {
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <button className="close-button" onClick={onClose}>×</button>
+        <button className="close-button" onClick={onClose}>
+          ×
+        </button>
         {children}
       </div>
       <style jsx>{`
         .modal-overlay {
           position: fixed;
-          top: 0; left: 0;
-          width: 100vw; height: 100vh;
-          background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.6));
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100vh;
+          background: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.3),
+            rgba(0, 0, 0, 0.6)
+          );
           display: flex;
           justify-content: center;
           align-items: center;
@@ -33,16 +41,25 @@ export default function Modal({ isOpen, onClose, children }: ModalProps) {
           border-radius: 10px;
           max-width: 500px;
           width: 90%;
-          box-shadow: 0 0 20px rgba(0,0,0,0.3);
+          box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
           position: relative;
+          overflow-y: auto;
+          max-height: 90vh;
         }
         .close-button {
           position: absolute;
-          top: 10px; right: 10px;
+          top: 10px;
+          right: 10px;
           background: none;
           border: none;
           font-size: 1.5rem;
           cursor: pointer;
+        }
+        @media (max-width: 480px) {
+          .modal-content {
+            padding: 1rem;
+            font-size: 0.9rem;
+          }
         }
       `}</style>
     </div>
