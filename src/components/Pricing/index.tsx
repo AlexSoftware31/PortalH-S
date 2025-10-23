@@ -10,9 +10,10 @@ const Pricing = () => {
   return (
     <section id="pricing" className="relative z-10 py-16 md:py-20 lg:py-28">
       <div className="container">
+        <br/> <br/>
         <SectionTitle
-          title="Simple and Affordable Pricing"
-          paragraph="There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration in some form."
+          title="Precios transparentes y beneficios reales"
+          paragraph="Sabemos que cada persona es diferente, por eso creamos planes flexibles y accesibles para que encuentres el que encaje contigo."
           center
           width="665px"
         />
@@ -27,7 +28,7 @@ const Pricing = () => {
                   : "text-dark dark:text-white"
               } mr-4 cursor-pointer text-base font-semibold`}
             >
-              Monthly
+              Mensual
             </span>
             <div
               onClick={() => setIsMonthly(!isMonthly)}
@@ -52,52 +53,42 @@ const Pricing = () => {
                   : "pointer-events-none text-primary"
               } ml-4 cursor-pointer text-base font-semibold`}
             >
-              Yearly
+              Anual
             </span>
           </div>
         </div>
-
-        <div className="grid grid-cols-1 gap-x-8 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
+         
+        <div className="grid grid-cols-1 gap-x-8 gap-y-10 md:grid-cols-2 lg:grid-cols-2 bg-center">
           <PricingBox
-            packageName="Lite"
-            price={isMonthly ? "40" : "120"}
+            packageName="Plan Básico"
+            price={isMonthly ? "800" : "5,100"}
             duration={isMonthly ? "mo" : "yr"}
-            subtitle="Lorem ipsum dolor sit amet adiscing elit Mauris egestas enim."
+            subtitle={isMonthly? "Incluye acceso ilimitado a cursos autodirigidos en teoría.": "(15% descuento)\nIncluye acceso ilimitado a cursos autodirigidos en teoría."}
           >
-            <OfferList text="All UI Components" status="active" />
-            <OfferList text="Use with Unlimited Projects" status="active" />
-            <OfferList text="Commercial Use" status="active" />
-            <OfferList text="Email Support" status="active" />
-            <OfferList text="Lifetime Access" status="inactive" />
-            <OfferList text="Free Lifetime Updates" status="inactive" />
+            <OfferList text="Instrumentos y composición" status="active" />
+            <OfferList text="Módulos breves a ritmo propio" status="active" />
+            <OfferList text="Seguimiento básico de progreso con métricas" status="active" />
+            <OfferList text="Recursos multimedia interactivos" status="active" />
+            <OfferList text="Acceso desde cualquier dispositivo" status="active" />
+            <OfferList text="Cursos autodirigidos en teoría" status="active" />
           </PricingBox>
           <PricingBox
-            packageName="Basic"
-            price={isMonthly ? "399" : "789"}
+            packageName="Plan Premium"
+            price={isMonthly ? "1,400" : "10,200"}
             duration={isMonthly ? "mo" : "yr"}
-            subtitle="Lorem ipsum dolor sit amet adiscing elit Mauris egestas enim."
+            subtitle={isMonthly? " Incluye todo lo del Básico, sesiones en vivo ilimitadas con instructores.": "(15% descuento)\nIncluye todo lo del Básico, sesiones en vivo ilimitadas con instructores."}
           >
-            <OfferList text="All UI Components" status="active" />
-            <OfferList text="Use with Unlimited Projects" status="active" />
-            <OfferList text="Commercial Use" status="active" />
-            <OfferList text="Email Support" status="active" />
-            <OfferList text="Lifetime Access" status="active" />
-            <OfferList text="Free Lifetime Updates" status="inactive" />
+            <OfferList text="Recomendaciones IA personalizadas" status="active" />
+            <OfferList text="Certificaciones" status="active" />
+            <OfferList text="Recompensas por avances" status="active" />
+            <OfferList text="Paquete familiar (hasta 3 usuarios)" status="active" />
+            <OfferList text="Contenido con géneros locales y colaboraciones" status="active" />
+            <OfferList text="Soporte prioritario y métricas avanzadas" status="inactive" />
           </PricingBox>
-          <PricingBox
-            packageName="Plus"
-            price={isMonthly ? "589" : "999"}
-            duration={isMonthly ? "mo" : "yr"}
-            subtitle="Lorem ipsum dolor sit amet adiscing elit Mauris egestas enim."
-          >
-            <OfferList text="All UI Components" status="active" />
-            <OfferList text="Use with Unlimited Projects" status="active" />
-            <OfferList text="Commercial Use" status="active" />
-            <OfferList text="Email Support" status="active" />
-            <OfferList text="Lifetime Access" status="active" />
-            <OfferList text="Free Lifetime Updates" status="active" />
-          </PricingBox>
+         
         </div>
+
+
       </div>
 
       <div className="absolute bottom-0 left-0 z-[-1]">

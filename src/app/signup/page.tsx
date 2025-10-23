@@ -3,8 +3,8 @@ import Link from "next/link";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Sign Up Page | Free Next.js Template for Startup and SaaS",
-  description: "This is Sign Up Page for Startup Nextjs Template",
+  title: "Harmony & Symphony",
+  description: "Aprende, crea, conecta y vive la música con nosotros.",
   // other metadata
 };
 
@@ -171,9 +171,9 @@ const SignupPage = () => {
                     </label>
                   </div> */}
                   <div className="mb-6">
-                    <button className="shadow-submit dark:shadow-submit-dark bg-primary hover:bg-primary/90 flex w-full items-center justify-center rounded-xs px-9 py-4 text-base font-medium text-white duration-300">
+                    <Link href='/princing' className="shadow-submit dark:shadow-submit-dark bg-primary hover:bg-primary/90 flex w-full items-center justify-center rounded-xs px-9 py-4 text-base font-medium text-white duration-300">
                       Registrarse
-                    </button>
+                    </Link>
                   </div>
                 </form>
                 <p className="text-body-color text-center text-base font-medium">

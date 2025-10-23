@@ -12,7 +12,7 @@ const PricingBox = (props: {
       <div className="shadow-three hover:shadow-one dark:bg-gray-dark dark:shadow-two dark:hover:shadow-gray-dark relative z-10 rounded-xs bg-white px-8 py-10">
         <div className="flex items-center justify-between">
           <h3 className="price mb-2 text-[32px] font-bold text-black dark:text-white">
-            $<span className="amount">{price}</span>
+            RD$<span className="amount">{price}</span>
             <span className="time text-body-color text-lg font-medium">
               /{duration}
             </span>
@@ -21,10 +21,10 @@ const PricingBox = (props: {
             {packageName}
           </h4>
         </div>
-        <p className="text-body-color mb-7 text-base">{subtitle}</p>
+        <p className="text-body-color mb-7 text-base whitespace-pre-line">{subtitle}</p>
         <div className="border-body-color/10 mb-8 border-b pb-8 dark:border-white/10">
           <button className="bg-primary/80 hover:shadow-signUp flex w-full items-center justify-center rounded-xs p-3 text-base font-semibold text-white transition duration-300 ease-in-out">
-            Start Free Trial
+            Iniciar con prueba gratis
           </button>
         </div>
         <div>{children}</div>
