@@ -83,7 +83,7 @@ const Pricing = () => {
             <OfferList text="Recompensas por avances" status="active" />
             <OfferList text="Paquete familiar (hasta 3 usuarios)" status="active" />
             <OfferList text="Contenido con géneros locales y colaboraciones" status="active" />
-            <OfferList text="Soporte prioritario y métricas avanzadas" status="inactive" />
+            <OfferList text="Soporte prioritario y métricas avanzadas" status="active" />
           </PricingBox>
          
         </div>
