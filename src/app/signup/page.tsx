@@ -44,7 +44,7 @@ const SignupPage = () => {
     setMessage(data.message || data.error);
 
     if (res.ok) {
-      router.push(`/princing?email=${form.email}`);
+      router.push(`/pricing?email=${form.email}`);
     } else {
       setMessage(data.error || "Error al crear usuario");
     }

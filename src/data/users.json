@@ -40,5 +40,11 @@
     "password": "$2b$10$MgzMn9SMRqegMv15sOgc4e72vTn2mH7l6BtSOGr1JcEIMEfVRpDaG",
     "name": "SAMUEL ALEJANDRO",
     "plan": "Premium"
+  },
+  {
+    "email": "poo@lkf.com",
+    "password": "$2b$10$DawEznBIf7XEh8vK7kRoHOnFYY8sV1CJ8XvHYFVrwwvnKXuloCW6O",
+    "name": "Juancho",
+    "plan": "Premium"
   }
 ]

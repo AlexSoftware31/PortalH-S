@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   // other metadata
 };
 
-const PricesPage = ({ searchParams }: { searchParams: { email?: string } }) => {
+const PricingPage = ({ searchParams }: { searchParams: { email?: string } }) => {
   const email = searchParams?.email ?? "";
 
   return (
@@ -17,4 +17,4 @@ const PricesPage = ({ searchParams }: { searchParams: { email?: string } }) => {
   );
 };
 
-export default PricesPage;
+export default PricingPage;
