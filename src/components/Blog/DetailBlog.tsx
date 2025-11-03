@@ -10,6 +10,7 @@ import { useState } from "react";
 
 const DetailBlog = ({ blog }: { blog: Blog }) => {
   const {
+    id,
     title,
     image,
     paragraph,
@@ -18,6 +19,7 @@ const DetailBlog = ({ blog }: { blog: Blog }) => {
     publishDate,
     description,
     leaning,
+    videoLinks
   } = blog;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -285,9 +287,9 @@ const DetailBlog = ({ blog }: { blog: Blog }) => {
                     </h3>
 
                     <div className="flex items-center">
-                      <TagButton text="Principiante"  href="/video-play"/>
-                      <TagButton text="Intermedio" href="/video-play" />
-                      <TagButton text="Avanzado" href="/video-play" />
+                      <TagButton text="Principiante"  href={`/video-play/${id}/basico`}/>
+                      <TagButton text="Intermedio" href={`/video-play/${id}/intermedio`} />
+                      <TagButton text="Avanzado" href={`/video-play/${id}/avanzado`} />
                     </div>
                   </Modal>
 

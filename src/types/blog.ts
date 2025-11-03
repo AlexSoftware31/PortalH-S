@@ -14,4 +14,9 @@ export type Blog = {
   publishDate: string;
   description: string;
   leaning: string[];
+  videoLinks: {
+    basico: string[];
+    intermedio: string[];
+    avanzado: string[];
+  };
 };

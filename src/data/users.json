@@ -16,5 +16,11 @@
     "password": "$2b$10$/iz.KF/q6OPJsNOudvbYDeAMPV3usksMYQ8RDO8FcOUIKXIp9kBxC",
     "name": "Alexander",
     "plan": "Premium"
+  },
+  {
+    "email": "sallytest@gmail.com",
+    "password": "$2b$10$gJinfHa9.C07MbADeMBoeuuB1llZLjSS/8TrU4joKPGPZRTbXkV.u",
+    "name": "Sally",
+    "plan": "Premium"
   }
 ]

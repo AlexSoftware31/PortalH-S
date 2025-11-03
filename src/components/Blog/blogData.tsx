@@ -24,6 +24,19 @@ const blogData: Blog[] = [
       "Lectura de tablaturas y ejercicios prácticos para mejorar la agilidad de tus manos.",
       "Primeras melodías y canciones completas.",
     ],
+    videoLinks: {
+      basico: [
+        "https://www.youtube.com/watch?v=g6h2ztdqCc8",
+        "https://www.youtube.com/watch?v=omui_UyFsIA",
+        "https://www.youtube.com/watch?v=WOW-sXw2t6Q",
+        "https://www.youtube.com/watch?v=kg4O9QzDfH8"
+      ],
+      intermedio: [
+        "https://www.youtube.com/watch?v=video_intermedio_1",
+        "https://www.youtube.com/watch?v=video_intermedio_2",
+      ],
+      avanzado: ["https://www.youtube.com/watch?v=video_avanzado_1"],
+    },
   },
   {
     id: 2,
@@ -48,6 +61,19 @@ const blogData: Blog[] = [
       "Improvisación básica y acompañamiento de melodías.",
       "Ejecución de piezas completas de nivel intermedio en diferentes estilos (clásico, pop y jazz ligero).",
     ],
+    videoLinks: {
+      basico: [
+        "https://www.youtube.com/watch?v=kAALQ4JEY6c",
+        "https://www.youtube.com/watch?v=LYuZIZ_LDKk",
+        "https://www.youtube.com/watch?v=rkP-S0U7O1w",
+        "https://www.youtube.com/watch?v=ZY1JIg5VRN0"
+      ],
+      intermedio: [
+        "https://www.youtube.com/watch?v=video_intermedio_1",
+        "https://www.youtube.com/watch?v=video_intermedio_2",
+      ],
+      avanzado: ["https://www.youtube.com/watch?v=video_avanzado_1"],
+    },
   },
   {
     id: 3,
@@ -71,8 +97,20 @@ const blogData: Blog[] = [
       "Uso de contrapunto y texturas polifónicas.",
       "Introducción a técnicas contemporáneas (atonalidad, minimalismo, serialismo).",
       "Herramientas digitales para la composición (DAWs y software de notación).",
-      "Creación de piezas originales con identidad musical propia."
+      "Creación de piezas originales con identidad musical propia.",
     ],
+    videoLinks: {
+      basico: [
+        "https://www.youtube.com/watch?v=video_basico_1",
+        "https://www.youtube.com/watch?v=video_basico_2",
+        "https://www.youtube.com/watch?v=video_basico_3",
+      ],
+      intermedio: [
+        "https://www.youtube.com/watch?v=video_intermedio_1",
+        "https://www.youtube.com/watch?v=video_intermedio_2",
+      ],
+      avanzado: ["https://www.youtube.com/watch?v=video_avanzado_1"],
+    },
   },
   {
     id: 4,
@@ -96,8 +134,20 @@ const blogData: Blog[] = [
       "Uso de contrapunto y texturas polifónicas.",
       "Introducción a técnicas contemporáneas (atonalidad, minimalismo, serialismo).",
       "Herramientas digitales para la composición (DAWs y software de notación).",
-      "Creación de piezas originales con identidad musical propia."
+      "Creación de piezas originales con identidad musical propia.",
     ],
+    videoLinks: {
+      basico: [
+        "https://www.youtube.com/watch?v=video_basico_1",
+        "https://www.youtube.com/watch?v=video_basico_2",
+        "https://www.youtube.com/watch?v=video_basico_3",
+      ],
+      intermedio: [
+        "https://www.youtube.com/watch?v=video_intermedio_1",
+        "https://www.youtube.com/watch?v=video_intermedio_2",
+      ],
+      avanzado: ["https://www.youtube.com/watch?v=video_avanzado_1"],
+    },
   },
   {
     id: 5,
@@ -122,6 +172,18 @@ const blogData: Blog[] = [
       "Improvisación básica y acompañamiento de melodías.",
       "Ejecución de piezas completas de nivel intermedio en diferentes estilos (clásico, pop y jazz ligero).",
     ],
+    videoLinks: {
+      basico: [
+        "https://www.youtube.com/watch?v=video_basico_1",
+        "https://www.youtube.com/watch?v=video_basico_2",
+        "https://www.youtube.com/watch?v=video_basico_3",
+      ],
+      intermedio: [
+        "https://www.youtube.com/watch?v=video_intermedio_1",
+        "https://www.youtube.com/watch?v=video_intermedio_2",
+      ],
+      avanzado: ["https://www.youtube.com/watch?v=video_avanzado_1"],
+    },
   },
   {
     id: 6,
@@ -146,6 +208,18 @@ const blogData: Blog[] = [
       "Lectura de tablaturas y ejercicios prácticos para mejorar la agilidad de tus manos.",
       "Primeras melodías y canciones completas.",
     ],
+    videoLinks: {
+      basico: [
+        "https://www.youtube.com/watch?v=video_basico_1",
+        "https://www.youtube.com/watch?v=video_basico_2",
+        "https://www.youtube.com/watch?v=video_basico_3",
+      ],
+      intermedio: [
+        "https://www.youtube.com/watch?v=video_intermedio_1",
+        "https://www.youtube.com/watch?v=video_intermedio_2",
+      ],
+      avanzado: ["https://www.youtube.com/watch?v=video_avanzado_1"],
+    },
   },
 ];
 export default blogData;

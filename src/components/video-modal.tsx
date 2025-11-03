@@ -3,16 +3,9 @@ import { createPortal } from "react-dom";
 type PropsType = {
   isOpen: boolean;
   onClose: () => void;
-} & (
-  | {
-      channel: "youtube";
-      videoId: string;
-    }
-  | {
-      channel?: "custom";
-      src: string;
-    }
-);
+  src: string;
+  channel?: "youtube" | "other";
+};
 
 export default function VideoModal({ isOpen, onClose, ...props }: PropsType) {
   if (!isOpen) return null;
@@ -20,13 +13,13 @@ export default function VideoModal({ isOpen, onClose, ...props }: PropsType) {
   let src = "";
 
   if (props.channel === "youtube") {
-    src = `https://www.youtube.com/embed/${props.videoId}`;
+    src = `https://www.youtube.com/embed/${props.src}`;
   } else {
     src = props.src;
   }
 
   return createPortal(
-    <div className="fixed inset-0 flex items-center justify-center bg-black/60">
+    <div className="fixed inset-0 flex items-center justify-center bg-black/60 z-50">
       <div className="relative w-full max-w-4xl bg-gray-900">
         <button
           onClick={onClose}
@@ -35,9 +28,16 @@ export default function VideoModal({ isOpen, onClose, ...props }: PropsType) {
           <span className="sr-only">Close modal</span>
           &times;
         </button>
-        <iframe width="100%" height="500" src={src} allowFullScreen />
+        <iframe
+          width="100%"
+          height="500"
+          src={src}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        />
       </div>
     </div>,
-    document.body,
+    document.body
   );
 }
+
