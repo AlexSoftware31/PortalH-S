@@ -7,12 +7,18 @@ export const metadata: Metadata = {
   // other metadata
 };
 
-const PricesPage = ({ searchParams }: { searchParams: { email?: string } }) => {
-  const email = searchParams.email;
+type Props = {
+  searchParams?: {
+    email?: string;
+  };
+};
+
+const PricesPage = ({ searchParams }: Props) => {
+  const email = searchParams?.email ?? "";
 
   return (
     <>
-      <Pricing email={email ?? ""}/>
+      <Pricing email={email ?? ""} />
     </>
   );
 };

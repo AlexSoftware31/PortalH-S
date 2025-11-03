@@ -28,5 +28,11 @@
     "password": "$2b$10$asqzpMkg8NyQJUN65.4Mm.h6Xr4knJGt5bXvYZH2jPgRGMAs8aNz.",
     "name": "juan",
     "plan": "Basico"
+  },
+  {
+    "email": "smarte.888@gmail.com",
+    "password": "$2b$10$m/wYTaGGZtbZIxHpSwOlc.Gt4xOp2akzrxegKZI5Gyw1H/thjH9sG",
+    "name": "Alexander",
+    "plan": "Basico"
   }
 ]
