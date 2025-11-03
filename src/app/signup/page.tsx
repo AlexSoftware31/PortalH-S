@@ -1,15 +1,54 @@
+"use client";
+
 import Link from "next/link";
 import { Metadata } from "next";
+import { FormEvent, useState } from "react";
+import { useRouter } from "next/navigation";
 
+interface FormData {
+  name: string;
+  email: string;
+  password: string;
+  plan: string;
+}
 
-export const metadata: Metadata = {
-  title: "Harmony & Symphony",
-  description: "Aprende, crea, conecta y vive la música con nosotros.",
-  // other metadata
-};
+// export const metadata: Metadata = {
+//   title: "Harmony & Symphony",
+//   description: "Aprende, crea, conecta y vive la música con nosotros.",
+//   // other metadata
+// };
 
 const SignupPage = () => {
- 
+  const [form, setForm] = useState<FormData>({
+    name: "",
+    password: "",
+    email: "",
+    plan: "N/A",
+  });
+  const [message, setMessage] = useState<string>("");
+  const router = useRouter();
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    const res = await fetch("/api/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(form),
+    });
+
+    const data = await res.json();
+    setMessage(data.message || data.error);
+
+    if (res.ok) {
+      router.push(`/princing?email=${form.email}`);
+    } else {
+      setMessage(data.error || "Error al crear usuario");
+    }
+  };
 
   return (
     <>
@@ -82,7 +121,7 @@ const SignupPage = () => {
                   </p>
                   <span className="bg-body-color/50 hidden h-[1px] w-full max-w-[60px] sm:block"></span>
                 </div>
-                <form>
+                <form onSubmit={handleSubmit}>
                   <div className="mb-8">
                     <label
                       htmlFor="name"
@@ -93,6 +132,8 @@ const SignupPage = () => {
                     <input
                       type="text"
                       name="name"
+                      value={form.name}
+                      onChange={handleChange}
                       placeholder="Ingrese su nombre completo"
                       className="border-stroke dark:text-body-color-dark dark:shadow-two text-body-color focus:border-primary dark:focus:border-primary w-full rounded-xs border bg-[#f8f8f8] px-6 py-3 text-base outline-hidden transition-all duration-300 dark:border-transparent dark:bg-[#2C303B] dark:focus:shadow-none"
                     />
@@ -107,6 +148,8 @@ const SignupPage = () => {
                     <input
                       type="email"
                       name="email"
+                      onChange={handleChange}
+                      value={form.email}
                       placeholder="Ingrese su Email"
                       className="border-stroke dark:text-body-color-dark dark:shadow-two text-body-color focus:border-primary dark:focus:border-primary w-full rounded-xs border bg-[#f8f8f8] px-6 py-3 text-base outline-hidden transition-all duration-300 dark:border-transparent dark:bg-[#2C303B] dark:focus:shadow-none"
                     />
@@ -121,6 +164,8 @@ const SignupPage = () => {
                     <input
                       type="password"
                       name="password"
+                      value={form.password}
+                      onChange={handleChange}
                       placeholder="Ingrese su Password"
                       className="border-stroke dark:text-body-color-dark dark:shadow-two text-body-color focus:border-primary dark:focus:border-primary w-full rounded-xs border bg-[#f8f8f8] px-6 py-3 text-base outline-hidden transition-all duration-300 dark:border-transparent dark:bg-[#2C303B] dark:focus:shadow-none"
                     />
@@ -170,12 +215,19 @@ const SignupPage = () => {
                     </label>
                   </div> */}
                   <div className="mb-6">
-                    <Link
+                    {/* <Link
                       href="/princing"
                       className="shadow-submit dark:shadow-submit-dark bg-primary hover:bg-primary/90 flex w-full items-center justify-center rounded-xs px-9 py-4 text-base font-medium text-white duration-300"
                     >
                       Registrarse
-                    </Link>
+                    </Link> */}
+                    <button
+                      type="submit"
+                      className="shadow-submit dark:shadow-submit-dark bg-primary hover:bg-primary/90 flex w-full items-center justify-center rounded-xs px-9 py-4 text-base font-medium text-white duration-300"
+                    >
+                      Registrarse
+                    </button>
+                    <p>{message}</p>
                   </div>
                 </form>
                 <p className="text-body-color text-center text-base font-medium">

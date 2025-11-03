@@ -22,11 +22,7 @@ const PricingBox = (props: {
           </h4>
         </div>
         <p className="text-body-color mb-7 text-base whitespace-pre-line">{subtitle}</p>
-        <div className="border-body-color/10 mb-8 border-b pb-8 dark:border-white/10">
-          <button className="bg-primary/80 hover:shadow-signUp flex w-full items-center justify-center rounded-xs p-3 text-base font-semibold text-white transition duration-300 ease-in-out">
-            Iniciar con prueba gratis
-          </button>
-        </div>
+       
         <div>{children}</div>
         <div className="absolute right-0 bottom-0 z-[-1]">
           <svg

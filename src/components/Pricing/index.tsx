@@ -1,30 +1,50 @@
 "use client";
+
 import { useState } from "react";
 import SectionTitle from "../Common/SectionTitle";
 import OfferList from "./OfferList";
 import PricingBox from "./PricingBox";
+import { useRouter } from "next/navigation";
 
-const Pricing = () => {
+type Props = {
+  email: string;
+};
+
+const Pricing = ({ email }: Props) => {
   const [isMonthly, setIsMonthly] = useState(true);
+  const router = useRouter();
+
+  const handleSetPlan = async (plan: string) => {
+    const res = await fetch("/api/update-plan", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: email, plan: plan }),
+    });
+
+    if (res.ok) {
+      router.push("/signin");
+    } else {
+      //setMessage(data.error || "Error al crear usuario");
+    }
+  };
 
   return (
     <section id="pricing" className="relative z-10 py-16 md:py-20 lg:py-28">
       <div className="container">
-        <br/> <br/>
+        <br /> <br />
         <SectionTitle
           title="Precios transparentes y beneficios reales"
           paragraph="Sabemos que cada persona es diferente, por eso creamos planes flexibles y accesibles para que encuentres el que encaje contigo."
           center
           width="665px"
         />
-
         <div className="w-full">
           <div className="mb-8 flex justify-center md:mb-12 lg:mb-16">
             <span
               onClick={() => setIsMonthly(true)}
               className={`${
                 isMonthly
-                  ? "pointer-events-none text-primary"
+                  ? "text-primary pointer-events-none"
                   : "text-dark dark:text-white"
               } mr-4 cursor-pointer text-base font-semibold`}
             >
@@ -39,7 +59,7 @@ const Pricing = () => {
                 <div
                   className={`${
                     isMonthly ? "" : "translate-x-full"
-                  } shadow-switch-1 absolute left-0 top-[-4px] flex h-7 w-7 items-center justify-center rounded-full bg-primary transition`}
+                  } shadow-switch-1 bg-primary absolute top-[-4px] left-0 flex h-7 w-7 items-center justify-center rounded-full transition`}
                 >
                   <span className="active h-4 w-4 rounded-full bg-white"></span>
                 </div>
@@ -50,45 +70,87 @@ const Pricing = () => {
               className={`${
                 isMonthly
                   ? "text-dark dark:text-white"
-                  : "pointer-events-none text-primary"
+                  : "text-primary pointer-events-none"
               } ml-4 cursor-pointer text-base font-semibold`}
             >
               Anual
             </span>
           </div>
         </div>
-         
-        <div className="grid grid-cols-1 gap-x-8 gap-y-10 md:grid-cols-2 lg:grid-cols-2 bg-center">
+        <div className="grid grid-cols-1 gap-x-8 gap-y-10 bg-center md:grid-cols-2 lg:grid-cols-2">
           <PricingBox
             packageName="Plan Básico"
             price={isMonthly ? "800" : "5,100"}
             duration={isMonthly ? "mo" : "yr"}
-            subtitle={isMonthly? "Incluye acceso ilimitado a cursos autodirigidos en teoría.": "(15% descuento)\nIncluye acceso ilimitado a cursos autodirigidos en teoría."}
+            subtitle={
+              isMonthly
+                ? "Incluye acceso ilimitado a cursos autodirigidos en teoría."
+                : "(15% descuento)\nIncluye acceso ilimitado a cursos autodirigidos en teoría."
+            }
           >
+            <div className="border-body-color/10 mb-8 border-b pb-8 dark:border-white/10">
+              <button
+                onClick={() => handleSetPlan("Basico")}
+                className="bg-primary/80 hover:shadow-signUp flex w-full items-center justify-center rounded-xs p-3 text-base font-semibold text-white transition duration-300 ease-in-out"
+              >
+                Seleccionar Plan Basico
+              </button>
+            </div>
             <OfferList text="Instrumentos y composición" status="active" />
             <OfferList text="Módulos breves a ritmo propio" status="active" />
-            <OfferList text="Seguimiento básico de progreso con métricas" status="active" />
-            <OfferList text="Recursos multimedia interactivos" status="active" />
-            <OfferList text="Acceso desde cualquier dispositivo" status="active" />
+            <OfferList
+              text="Seguimiento básico de progreso con métricas"
+              status="active"
+            />
+            <OfferList
+              text="Recursos multimedia interactivos"
+              status="active"
+            />
+            <OfferList
+              text="Acceso desde cualquier dispositivo"
+              status="active"
+            />
             <OfferList text="Cursos autodirigidos en teoría" status="active" />
           </PricingBox>
           <PricingBox
             packageName="Plan Premium"
             price={isMonthly ? "1,400" : "10,200"}
             duration={isMonthly ? "mo" : "yr"}
-            subtitle={isMonthly? " Incluye todo lo del Básico, sesiones en vivo ilimitadas con instructores.": "(15% descuento)\nIncluye todo lo del Básico, sesiones en vivo ilimitadas con instructores."}
+            subtitle={
+              isMonthly
+                ? " Incluye todo lo del Básico, sesiones en vivo ilimitadas con instructores."
+                : "(15% descuento)\nIncluye todo lo del Básico, sesiones en vivo ilimitadas con instructores."
+            }
           >
-            <OfferList text="Recomendaciones IA personalizadas" status="active" />
+            <div className="border-body-color/10 mb-8 border-b pb-8 dark:border-white/10">
+              <button
+                onClick={() => handleSetPlan("Premium")}
+                className="bg-primary/80 hover:shadow-signUp flex w-full items-center justify-center rounded-xs p-3 text-base font-semibold text-white transition duration-300 ease-in-out"
+              >
+                Seleccionar Plan Premium
+              </button>
+            </div>
+
+            <OfferList
+              text="Recomendaciones IA personalizadas"
+              status="active"
+            />
             <OfferList text="Certificaciones" status="active" />
             <OfferList text="Recompensas por avances" status="active" />
-            <OfferList text="Paquete familiar (hasta 3 usuarios)" status="active" />
-            <OfferList text="Contenido con géneros locales y colaboraciones" status="active" />
-            <OfferList text="Soporte prioritario y métricas avanzadas" status="active" />
+            <OfferList
+              text="Paquete familiar (hasta 3 usuarios)"
+              status="active"
+            />
+            <OfferList
+              text="Contenido con géneros locales y colaboraciones"
+              status="active"
+            />
+            <OfferList
+              text="Soporte prioritario y métricas avanzadas"
+              status="active"
+            />
           </PricingBox>
-         
         </div>
-
-
       </div>
 
       <div className="absolute bottom-0 left-0 z-[-1]">

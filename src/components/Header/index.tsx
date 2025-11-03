@@ -1,14 +1,24 @@
 "use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import ThemeToggler from "./ThemeToggler";
 import menuData from "./menuData";
 
+type User = {
+  name: string;
+  email: string;
+  plan: string;
+};
+
 const Header = () => {
   // Navbar toggle
   const [navbarOpen, setNavbarOpen] = useState(false);
+  const [email, setEmail] = useState("");
+  const [user, setUser] = useState<User | null>(null);
+
   const navbarToggleHandler = () => {
     setNavbarOpen(!navbarOpen);
   };
@@ -24,8 +34,27 @@ const Header = () => {
   };
   useEffect(() => {
     window.addEventListener("scroll", handleStickyNavbar);
-  });
 
+    const checkAuth = async () => {
+      const res = await fetch("/api/check-auth");
+      const data = await res.json();
+      setEmail(data.token || "");
+    };
+    checkAuth();
+  }),
+    [];
+
+  useEffect(() => {
+    if (!email) return;
+
+    const getUserByEmail = async (email: string) => {
+      const res = await fetch(`/api/user?email=${email}`);
+      const data = await res.json();
+      setUser(data);
+    };
+
+    getUserByEmail(email);
+  }, [email]);
   // submenu handler
   const [openIndex, setOpenIndex] = useState(-1);
   const handleSubmenu = (index) => {
@@ -141,7 +170,7 @@ const Header = () => {
                                 openIndex === index ? "block" : "hidden"
                               }`}
                             >
-                              {menuItem.submenu.map((submenuItem, index) => (
+                              {/* {menuItem.submenu.map((submenuItem, index) => (
                                 <Link
                                   href={submenuItem.path}
                                   key={index}
@@ -149,7 +178,7 @@ const Header = () => {
                                 >
                                   {submenuItem.title}
                                 </Link>
-                              ))}
+                              ))} */}
                             </div>
                           </>
                         )}
@@ -158,19 +187,38 @@ const Header = () => {
                   </ul>
                 </nav>
               </div>
+
               <div className="flex items-center justify-end pr-16 lg:pr-0">
-                <Link
-                  href="/signin"
-                  className="text-dark hidden px-7 py-3 text-base font-medium hover:opacity-70 md:block dark:text-white"
-                >
-                  Iniciar Sesión
-                </Link>
-                <Link
-                  href="/signup"
-                  className="ease-in-up shadow-btn hover:shadow-btn-hover bg-primary hover:bg-primary/90 hidden rounded-xs px-8 py-3 text-base font-medium text-white transition duration-300 md:block md:px-9 lg:px-6 xl:px-9"
-                >
-                  Registrarse
-                </Link>
+                {email ? (
+                  <>
+                    {user && <span style={{marginRight: "15px"}}>{user.name} (Plan: {user.plan})</span>}
+
+                    <form action="/api/logout" method="POST">
+                      <button
+                        type="submit"
+                        className="ease-in-up shadow-btn hover:shadow-btn-hover bg-primary hover:bg-primary/90 hidden rounded-xs px-8 py-3 text-base font-medium text-white transition duration-300 md:block md:px-9 lg:px-6 xl:px-9"
+                      >
+                        Cerrar sesión
+                      </button>
+                    </form>
+                  </>
+                ) : (
+                  <>
+                    <Link
+                      href="/signin"
+                      className="text-dark hidden px-7 py-3 text-base font-medium hover:opacity-70 md:block dark:text-white"
+                    >
+                      Iniciar Sesión
+                    </Link>
+                    <Link
+                      href="/signup"
+                      className="ease-in-up shadow-btn hover:shadow-btn-hover bg-primary hover:bg-primary/90 hidden rounded-xs px-8 py-3 text-base font-medium text-white transition duration-300 md:block md:px-9 lg:px-6 xl:px-9"
+                    >
+                      Registrarse
+                    </Link>
+                  </>
+                )}
+
                 <div>
                   <ThemeToggler />
                 </div>

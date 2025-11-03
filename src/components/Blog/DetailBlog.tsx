@@ -285,9 +285,9 @@ const DetailBlog = ({ blog }: { blog: Blog }) => {
                     </h3>
 
                     <div className="flex items-center">
-                      <TagButton text="Principiante"  href="/signin"/>
-                      <TagButton text="Intermedio" href="/signin" />
-                      <TagButton text="Avanzado" href="/signin" />
+                      <TagButton text="Principiante"  href="/video-play"/>
+                      <TagButton text="Intermedio" href="/video-play" />
+                      <TagButton text="Avanzado" href="/video-play" />
                     </div>
                   </Modal>
 

@@ -1,0 +1,20 @@
+[
+  {
+    "email": "amarte@gmail.com",
+    "password": "$2b$10$Q4U3052TA.16UEEZugYjW.0QZoaCisargClzHHdV4HiR9F1V40N2y",
+    "name": "test",
+    "plan": "Basico"
+  },
+  {
+    "email": "luis22@gmail.com",
+    "password": "$2b$10$WlmYjAYjsZZEXqsHPZkuweyWcpvpoXS94U912s3z6xx9GwmZE2JIu",
+    "name": "Juan palote",
+    "plan": "Premium"
+  },
+  {
+    "email": "inf@gmail.com",
+    "password": "$2b$10$/iz.KF/q6OPJsNOudvbYDeAMPV3usksMYQ8RDO8FcOUIKXIp9kBxC",
+    "name": "Alexander",
+    "plan": "Premium"
+  }
+]

@@ -1,14 +1,47 @@
+"use client";
+
 import Link from "next/link";
-
+import { useRouter } from "next/navigation";
 import { Metadata } from "next";
+import { FormEvent, useState } from "react";
 
-export const metadata: Metadata = {
-  title: "Harmony & Symphony",
-  description: "Aprende, crea, conecta y vive la música con nosotros.",
-  // other metadata
-};
+// export const metadata: Metadata = {
+//   title: "Harmony & Symphony",
+//   description: "Aprende, crea, conecta y vive la música con nosotros.",
+//   // other metadata
+// };
+interface LoginData {
+  email: string;
+  password: string;
+}
 
 const SigninPage = () => {
+  const [form, setForm] = useState<LoginData>({ email: "", password: "" });
+  const [message, setMessage] = useState<string>("");
+  const router = useRouter();
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: FormEvent) => {
+    console.log(form);
+    e.preventDefault();
+    const res = await fetch("/api/signin", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(form),
+    });
+    const data = await res.json();
+
+    if (res.ok) {
+      router.push("/blog");
+      router.refresh();
+    } else {
+      setMessage(data.error || "Error iniciando sesion");
+    }
+  };
+
   return (
     <>
       <section className="relative z-10 overflow-hidden pt-36 pb-16 md:pb-20 lg:pt-[180px] lg:pb-28">
@@ -17,7 +50,7 @@ const SigninPage = () => {
             <div className="w-full px-4">
               <div className="shadow-three dark:bg-dark mx-auto max-w-[500px] rounded-sm bg-white px-6 py-10 sm:p-[60px]">
                 <h3 className="mb-3 text-center text-2xl font-bold text-black sm:text-3xl dark:text-white">
-                  Iniciar Sesión 
+                  Iniciar Sesión
                 </h3>
                 <p className="text-body-color mb-11 text-center text-base font-medium">
                   Acceda a sus cursos iniciando sesión en su cuenta.
@@ -80,7 +113,7 @@ const SigninPage = () => {
                   </p>
                   <span className="bg-body-color/50 hidden h-[1px] w-full max-w-[70px] sm:block"></span>
                 </div>
-                <form>
+                <form onSubmit={handleSubmit}>
                   <div className="mb-8">
                     <label
                       htmlFor="email"
@@ -91,6 +124,8 @@ const SigninPage = () => {
                     <input
                       type="email"
                       name="email"
+                      value={form.email}
+                      onChange={handleChange}
                       placeholder="Ingrese su Email"
                       className="border-stroke dark:text-body-color-dark dark:shadow-two text-body-color focus:border-primary dark:focus:border-primary w-full rounded-xs border bg-[#f8f8f8] px-6 py-3 text-base outline-hidden transition-all duration-300 dark:border-transparent dark:bg-[#2C303B] dark:focus:shadow-none"
                     />
@@ -100,11 +135,13 @@ const SigninPage = () => {
                       htmlFor="password"
                       className="text-dark mb-3 block text-sm dark:text-white"
                     >
-                     Password
+                      Password
                     </label>
                     <input
                       type="password"
                       name="password"
+                      value={form.password}
+                      onChange={handleChange}
                       placeholder="Ingrese su Password"
                       className="border-stroke dark:text-body-color-dark dark:shadow-two text-body-color focus:border-primary dark:focus:border-primary w-full rounded-xs border bg-[#f8f8f8] px-6 py-3 text-base outline-hidden transition-all duration-300 dark:border-transparent dark:bg-[#2C303B] dark:focus:shadow-none"
                     />
@@ -153,10 +190,14 @@ const SigninPage = () => {
                     </div>
                   </div>
                   <div className="mb-6">
-                    <button className="shadow-submit dark:shadow-submit-dark bg-primary hover:bg-primary/90 flex w-full items-center justify-center rounded-xs px-9 py-4 text-base font-medium text-white duration-300">
+                    <button
+                      type="submit"
+                      className="shadow-submit dark:shadow-submit-dark bg-primary hover:bg-primary/90 flex w-full items-center justify-center rounded-xs px-9 py-4 text-base font-medium text-white duration-300"
+                    >
                       Iniciar Sesión
                     </button>
                   </div>
+                  <p>{message}</p>
                 </form>
                 <p className="text-body-color text-center text-base font-medium">
                   ¿No tienes cuenta?{" "}
