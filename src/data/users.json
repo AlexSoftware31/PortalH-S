@@ -16,5 +16,17 @@
     "password": "$2b$10$/iz.KF/q6OPJsNOudvbYDeAMPV3usksMYQ8RDO8FcOUIKXIp9kBxC",
     "name": "Alexander",
     "plan": "Premium"
+  },
+  {
+    "email": "dd@lkf.com",
+    "password": "$2b$10$KFbRfj4waycxlYrkP3yQ/.kmGjWux1IvngHFDDtAAVIAg0Y2cWSfq",
+    "name": "juan",
+    "plan": "N/A"
+  },
+  {
+    "email": "ddd@lkf.com",
+    "password": "$2b$10$asqzpMkg8NyQJUN65.4Mm.h6Xr4knJGt5bXvYZH2jPgRGMAs8aNz.",
+    "name": "juan",
+    "plan": "Basico"
   }
 ]
