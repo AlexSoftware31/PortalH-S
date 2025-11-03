@@ -4,17 +4,14 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Harmony & Symphony",
   description: "Precios",
-  // other metadata
 };
 
-const PricingPage = ({ searchParams }: { searchParams: { email?: string } }) => {
-  const email = searchParams?.email ?? "";
+interface PricingPageProps {
+  searchParams?: Record<string, string | string[] | undefined>;
+}
 
-  return (
-    <>
-      <Pricing email={email ?? ""} />
-    </>
-  );
-};
+export default function PricingPage({ searchParams }: PricingPageProps) {
+  const email = typeof searchParams?.email === "string" ? searchParams.email : "";
 
-export default PricingPage;
+  return <Pricing email={email} />;
+}
