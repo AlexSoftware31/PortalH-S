@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
-import { getUsers, saveUsers } from "@/utils/auth";
+import { connectDB } from "@/lib/mongodb";
+import User from "@/models/User";
 
 export async function POST(request: Request) {
   const body = await request.json();
@@ -9,15 +10,16 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Faltan datos" }, { status: 400 });
   }
 
-  const users = getUsers();
-  const index = users.findIndex(u => u.email === email);
+  await connectDB();
 
-  if (index === -1) {
+  const user = await User.findOne({ email });
+  if (!user) {
     return NextResponse.json({ error: "Usuario no encontrado" }, { status: 404 });
   }
 
-  users[index].plan = plan;
-  saveUsers(users);
+  user.plan = plan;
+  await user.save();
 
   return NextResponse.json({ message: `Plan actualizado a ${plan}` });
+
 }

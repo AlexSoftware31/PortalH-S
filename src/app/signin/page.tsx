@@ -40,6 +40,8 @@ const SigninPage = () => {
     } else {
       setMessage(data.error || "Error iniciando sesion");
     }
+
+    setTimeout(() => setMessage(""), 6000);
   };
 
   return (
@@ -113,6 +115,11 @@ const SigninPage = () => {
                   </p>
                   <span className="bg-body-color/50 hidden h-[1px] w-full max-w-[70px] sm:block"></span>
                 </div>
+                 {message && (
+                  <div className="mb-6 rounded bg-red-100 px-4 py-3 font-semibold text-red-800">
+                    {message}
+                  </div>
+                )}
                 <form onSubmit={handleSubmit}>
                   <div className="mb-8">
                     <label
@@ -126,6 +133,7 @@ const SigninPage = () => {
                       name="email"
                       value={form.email}
                       onChange={handleChange}
+                      required
                       placeholder="Ingrese su Email"
                       className="border-stroke dark:text-body-color-dark dark:shadow-two text-body-color focus:border-primary dark:focus:border-primary w-full rounded-xs border bg-[#f8f8f8] px-6 py-3 text-base outline-hidden transition-all duration-300 dark:border-transparent dark:bg-[#2C303B] dark:focus:shadow-none"
                     />
@@ -142,6 +150,7 @@ const SigninPage = () => {
                       name="password"
                       value={form.password}
                       onChange={handleChange}
+                      required
                       placeholder="Ingrese su Password"
                       className="border-stroke dark:text-body-color-dark dark:shadow-two text-body-color focus:border-primary dark:focus:border-primary w-full rounded-xs border bg-[#f8f8f8] px-6 py-3 text-base outline-hidden transition-all duration-300 dark:border-transparent dark:bg-[#2C303B] dark:focus:shadow-none"
                     />
@@ -197,7 +206,6 @@ const SigninPage = () => {
                       Iniciar Sesión
                     </button>
                   </div>
-                  <p>{message}</p>
                 </form>
                 <p className="text-body-color text-center text-base font-medium">
                   ¿No tienes cuenta?{" "}

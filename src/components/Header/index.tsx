@@ -55,6 +55,7 @@ const Header = () => {
 
     getUserByEmail(email);
   }, [email]);
+
   // submenu handler
   const [openIndex, setOpenIndex] = useState(-1);
   const handleSubmenu = (index) => {
@@ -170,15 +171,6 @@ const Header = () => {
                                 openIndex === index ? "block" : "hidden"
                               }`}
                             >
-                              {/* {menuItem.submenu.map((submenuItem, index) => (
-                                <Link
-                                  href={submenuItem.path}
-                                  key={index}
-                                  className="text-dark hover:text-primary block rounded-sm py-2.5 text-sm lg:px-3 dark:text-white/70 dark:hover:text-white"
-                                >
-                                  {submenuItem.title}
-                                </Link>
-                              ))} */}
                             </div>
                           </>
                         )}
@@ -191,7 +183,14 @@ const Header = () => {
               <div className="flex items-center justify-end pr-16 lg:pr-0">
                 {email ? (
                   <>
-                    {user && <span style={{marginRight: "15px"}}>{user.name} (Plan: {user.plan})</span>}
+                    {user && (
+                      <span
+                        className=" text-dark font-medium dark:text-white"
+                        style={{ marginRight: "15px" }}
+                      >
+                        {user.name} (Plan: {user.plan})
+                      </span>
+                    )}
 
                     <form action="/api/logout" method="POST">
                       <button

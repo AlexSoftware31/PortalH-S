@@ -1,7 +1,6 @@
 "use client";
 
 import VideoModal from "@/components/video-modal";
-import Image from "next/image";
 import { useState } from "react";
 import SectionTitle from "../Common/SectionTitle";
 import { Blog } from "@/types/blog";
@@ -18,7 +17,7 @@ export default function Video({ blog, level }: { blog: Blog; level: string }) {
 
   const [activeVideo, setActiveVideo] = useState<string>("");
 
-  const { title, image, paragraph, videoLinks } = blog;
+  const { title, paragraph, videoLinks } = blog;
 
   const videos = videoLinks?.[levelselect] ?? [];
 

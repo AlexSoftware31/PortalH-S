@@ -7,7 +7,7 @@ export async function POST(request: Request) {
   const { email, password } = body;
 
   if (!email || !password) {
-    return NextResponse.json({ error: 'Faltan datos' }, { status: 400 });
+    return NextResponse.json({ error: 'Complete los datos requeridos.' }, { status: 400 });
   }
 
   const valid = await validateUser(email, password);

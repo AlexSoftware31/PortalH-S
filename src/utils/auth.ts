@@ -1,31 +1,36 @@
-import fs from 'fs';
-import path from 'path';
 import bcrypt from 'bcryptjs';
+import { connectDB } from '@/lib/mongodb';
+import User from '@/models/User';
 
-const usersFile = path.join(process.cwd(), 'src', 'data', 'users.json');
-
-export function getUsers(): { email: string; password: string; name: string, plan: string}[] {
-  const data = fs.readFileSync(usersFile, 'utf-8');
-  return JSON.parse(data);
-}
-
-export function saveUsers(users: { email: string; password: string ; name: string; plan: string}[]) {
-  fs.writeFileSync(usersFile, JSON.stringify(users, null, 2));
-}
 
 export async function createUser(email: string, password: string, name: string, plan: string) {
-  const users = getUsers();
-  const exists = users.find(u => u.email === email);
-  if (exists) throw new Error('Usuario ya existe');
+  await connectDB();
 
-  const hashed = await bcrypt.hash(password, 10);
-  users.push({email, password: hashed , name, plan});
-  saveUsers(users);
+  const existingUser = await User.findOne({ email });
+  if (existingUser) {
+    throw new Error("El usuario ya existe");
+  }
+
+  const hashedPassword = await bcrypt.hash(password, 10);
+
+  const newUser = new User({
+    name,
+    email,
+    password: hashedPassword,
+    plan,
+  });
+
+  await newUser.save();
+
 }
 
 export async function validateUser(email: string, password: string) {
-  const users = getUsers();
-  const user = users.find(u => u.email === email);
+  await connectDB();
+
+  const user = await User.findOne({ email });
   if (!user) return false;
-  return await bcrypt.compare(password, user.password);
+
+  const isMatch = await bcrypt.compare(password, user.password);
+  return isMatch;
+
 }

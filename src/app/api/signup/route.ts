@@ -5,8 +5,12 @@ export async function POST(request: Request) {
   const body = await request.json();
   const { name, password, email, plan } = body;
 
-  if (!email || !password) {
-    return NextResponse.json({ error: 'Faltan datos' }, { status: 400 });
+  if (!email || !password || !name) {
+    return NextResponse.json({ error: 'Complete los datos requeridos.' }, { status: 400 });
+  }
+
+  if (password.length < 6) {
+    return NextResponse.json({ error: 'La contraseña debe tener un mínimo de 6 caracteres.' }, { status: 400 });
   }
 
   try {

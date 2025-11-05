@@ -6,7 +6,8 @@ import SharePost from "@/components/Blog/SharePost";
 import TagButton from "@/components/Blog/TagButton";
 import Link from "next/link";
 import Modal from "../Modal/modal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 const DetailBlog = ({ blog }: { blog: Blog }) => {
   const {
@@ -19,10 +20,28 @@ const DetailBlog = ({ blog }: { blog: Blog }) => {
     publishDate,
     description,
     leaning,
-    videoLinks
   } = blog;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [email, setEmail] = useState("");
+  const router = useRouter();
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      const res = await fetch("/api/check-auth");
+      const data = await res.json();
+      setEmail(data.token || "");
+    };
+    checkAuth();
+  }, []);
+
+  const HandlerValidateSignin = () =>{
+    if(email){
+      setIsModalOpen(true);
+    }else{
+      router.push("/signin");
+    }
+  }
 
   return (
     <>
@@ -271,7 +290,7 @@ const DetailBlog = ({ blog }: { blog: Blog }) => {
                       Iniciar Clases
                     </Link> */}
                     <button
-                      onClick={() => setIsModalOpen(true)}
+                      onClick={HandlerValidateSignin}
                       className="shadow-submit dark:shadow-submit-dark bg-primary hover:bg-primary/90 flex w-full items-center justify-center rounded-xs px-9 py-4 text-base font-medium text-white duration-300"
                     >
                       Iniciar Clases
@@ -283,13 +302,22 @@ const DetailBlog = ({ blog }: { blog: Blog }) => {
                     onClose={() => setIsModalOpen(false)}
                   >
                     <h3 className="font-xl mb-10 leading-tight font-bold text-black sm:text-2xl sm:leading-tight lg:text-xl lg:leading-tight xl:text-2xl xl:leading-tight dark:text-white">
-                     ¿Con qué nivel te gustaría comenzar?
+                      ¿Con qué nivel te gustaría comenzar?
                     </h3>
 
                     <div className="flex items-center">
-                      <TagButton text="Básico"  href={`/video-play/${id}/basico`}/>
-                      <TagButton text="Intermedio" href={`/video-play/${id}/intermedio`} />
-                      <TagButton text="Avanzado" href={`/video-play/${id}/avanzado`} />
+                      <TagButton
+                        text="Básico"
+                        href={`/video-play/${id}/basico`}
+                      />
+                      <TagButton
+                        text="Intermedio"
+                        href={`/video-play/${id}/intermedio`}
+                      />
+                      <TagButton
+                        text="Avanzado"
+                        href={`/video-play/${id}/avanzado`}
+                      />
                     </div>
                   </Modal>
 

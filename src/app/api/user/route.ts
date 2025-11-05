@@ -1,5 +1,14 @@
 import { NextResponse } from "next/server";
-import { getUsers } from "@/utils/auth";
+import { connectDB } from "@/lib/mongodb";
+import User from "@/models/User";
+
+// Define el tipo plano sin contraseña
+type SafeUser = {
+  _id: string;
+  name?: string;
+  email: string;
+  plan?: string;
+};
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -9,15 +18,17 @@ export async function GET(request: Request) {
     return NextResponse.json({ error: "Falta el parámetro 'email'" }, { status: 400 });
   }
 
-  const users = getUsers();
-  const user = users.find(u => u.email === email);
+  await connectDB();
+
+  // Usa lean() y tipa el resultado como any para evitar errores de acceso
+  const user = await User.findOne({ email }).lean<any>();
 
   if (!user) {
     return NextResponse.json({ error: "Usuario no encontrado" }, { status: 404 });
   }
 
-  // Opcional: no devolver la contraseña
+  // Extrae y elimina la contraseña
   const { password, ...safeUser } = user;
 
-  return NextResponse.json(safeUser);
+  return NextResponse.json(safeUser as SafeUser);
 }
