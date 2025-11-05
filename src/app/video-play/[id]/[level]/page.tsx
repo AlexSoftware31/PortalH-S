@@ -1,11 +1,12 @@
 import blogData from "@/components/Blog/blogData";
+import Schedule from "@/components/Schedule";
 import Video from "@/components/Video";
 import { Blog } from "@/types/blog";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Harmony & Symphony",
-  description: "Precios",
+  description: "Video",
   // other metadata
 };
 
@@ -25,6 +26,7 @@ const VideoPage = async ({
   return (
     <>
       <Video blog={blog} level={level} />
+      <Schedule/>
     </>
   );
 };

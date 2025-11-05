@@ -287,7 +287,7 @@ const DetailBlog = ({ blog }: { blog: Blog }) => {
                     </h3>
 
                     <div className="flex items-center">
-                      <TagButton text="Principiante"  href={`/video-play/${id}/basico`}/>
+                      <TagButton text="Básico"  href={`/video-play/${id}/basico`}/>
                       <TagButton text="Intermedio" href={`/video-play/${id}/intermedio`} />
                       <TagButton text="Avanzado" href={`/video-play/${id}/avanzado`} />
                     </div>

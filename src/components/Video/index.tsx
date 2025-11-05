@@ -22,7 +22,7 @@ export default function Video({ blog, level }: { blog: Blog; level: string }) {
 
   const videos = videoLinks?.[levelselect] ?? [];
 
-  const fullTitle = `${title} (${levelselect})`;
+  const fullTitle = `${title} (${levelselect == "basico" ? "Básico" : levelselect.charAt(0).toUpperCase() + levelselect.slice(1)})`;
 
   const openModal = (videoUrl: string) => {
     const videoId = extractYouTubeId(videoUrl);
@@ -53,28 +53,6 @@ export default function Video({ blog, level }: { blog: Blog; level: string }) {
             <div className="w-full px-4">
               <div className="mx-auto max-w-[770px] overflow-hidden rounded-md">
                 <div className="relative aspect-77/40 items-center justify-center">
-                  {/* <Image
-                    src={image}
-                    alt="video image"
-                    className="object-cover"
-                    fill
-                  />
-                  <div className="absolute top-0 right-0 flex h-full w-full items-center justify-center">
-                    <button
-                      aria-label="video play button"
-                      onClick={() => setOpen(true)}
-                      className="text-primary flex h-[70px] w-[70px] items-center justify-center rounded-full bg-white/75 transition hover:bg-white"
-                    >
-                      <svg
-                        width="16"
-                        height="18"
-                        viewBox="0 0 16 18"
-                        className="fill-current"
-                      >
-                        <path d="M15.5 8.13397C16.1667 8.51888 16.1667 9.48112 15.5 9.86602L2 17.6603C1.33333 18.0452 0.499999 17.564 0.499999 16.7942L0.5 1.20577C0.5 0.43597 1.33333 -0.0451549 2 0.339745L15.5 8.13397Z" />
-                      </svg>
-                    </button>
-                  </div> */}
                   <div className="flex gap-4">
                     {levels.map((lvl) => (
                       <button
@@ -86,14 +64,15 @@ export default function Video({ blog, level }: { blog: Blog; level: string }) {
                             : "bg-gray-300"
                         }`}
                       >
-                        {lvl.charAt(0).toUpperCase() + lvl.slice(1)}
+                        {lvl == "basico" ? "Básico" : lvl.charAt(0).toUpperCase() + lvl.slice(1)}
                       </button>
                     ))}
                   </div>
-                  <br/>
+                  <br />
 
                   <h2 className="mb-4 text-xl font-bold capitalize">
-                    Videos nivel {levelselect}
+                    Videos nivel{" "}
+                    {levelselect == "basico" ? "Básico" : levelselect}
                   </h2>
                   <ul className="grid grid-cols-1 gap-4 md:grid-cols-2">
                     {videos.map((url, index) => (
