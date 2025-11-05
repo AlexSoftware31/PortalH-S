@@ -18,6 +18,7 @@ const Header = () => {
   const [navbarOpen, setNavbarOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [user, setUser] = useState<User | null>(null);
+  const router = useRouter();
 
   const navbarToggleHandler = () => {
     setNavbarOpen(!navbarOpen);
@@ -64,6 +65,11 @@ const Header = () => {
     } else {
       setOpenIndex(index);
     }
+  };
+
+  const HandlerLogOut = async () => {
+    await fetch("/api/logout", { method: "POST" });
+    router.push("/");
   };
 
   const usePathName = usePathname();
@@ -170,8 +176,7 @@ const Header = () => {
                               className={`submenu dark:bg-dark relative top-full left-0 rounded-sm bg-white transition-[top] duration-300 group-hover:opacity-100 lg:invisible lg:absolute lg:top-[110%] lg:block lg:w-[250px] lg:p-4 lg:opacity-0 lg:shadow-lg lg:group-hover:visible lg:group-hover:top-full ${
                                 openIndex === index ? "block" : "hidden"
                               }`}
-                            >
-                            </div>
+                            ></div>
                           </>
                         )}
                       </li>
@@ -185,21 +190,19 @@ const Header = () => {
                   <>
                     {user && (
                       <span
-                        className=" text-dark font-medium dark:text-white"
+                        className="text-dark font-medium dark:text-white"
                         style={{ marginRight: "15px" }}
                       >
                         {user.name} (Plan: {user.plan})
                       </span>
                     )}
 
-                    <form action="/api/logout" method="POST">
-                      <button
-                        type="submit"
-                        className="ease-in-up shadow-btn hover:shadow-btn-hover bg-primary hover:bg-primary/90 hidden rounded-xs px-8 py-3 text-base font-medium text-white transition duration-300 md:block md:px-9 lg:px-6 xl:px-9"
-                      >
-                        Cerrar sesión
-                      </button>
-                    </form>
+                    <button
+                      onClick={HandlerLogOut}
+                      className="ease-in-up shadow-btn hover:shadow-btn-hover bg-primary hover:bg-primary/90 hidden rounded-xs px-8 py-3 text-base font-medium text-white transition duration-300 md:block md:px-9 lg:px-6 xl:px-9"
+                    >
+                      Cerrar sesión
+                    </button>
                   </>
                 ) : (
                   <>
