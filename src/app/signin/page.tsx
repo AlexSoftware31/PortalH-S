@@ -2,22 +2,23 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Metadata } from "next";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 
-// export const metadata: Metadata = {
-//   title: "Harmony & Symphony",
-//   description: "Aprende, crea, conecta y vive la música con nosotros.",
-//   // other metadata
-// };
 interface LoginData {
   email: string;
   password: string;
 }
 
+type User = {
+  name: string;
+  email: string;
+  plan: string;
+};
+
 const SigninPage = () => {
   const [form, setForm] = useState<LoginData>({ email: "", password: "" });
   const [message, setMessage] = useState<string>("");
+  const [user, setUser] = useState<User | null>(null);
   const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,14 +36,29 @@ const SigninPage = () => {
     const data = await res.json();
 
     if (res.ok) {
-      router.push("/blog");
+      if (user?.plan == "N/A") {
+        router.push(`/pricing?email=${user.email}`);
+      } else {
+        router.push("/blog");
+      }
       router.refresh();
     } else {
       setMessage(data.error || "Error iniciando sesion");
+      setTimeout(() => setMessage(""), 6000);
     }
-
-    setTimeout(() => setMessage(""), 6000);
   };
+
+  useEffect(() => {
+    if (!form.email) return;
+
+    const getUserByEmail = async (email: string) => {
+      const res = await fetch(`/api/user?email=${email}`);
+      const data = await res.json();
+      setUser(data);
+    };
+
+    getUserByEmail(form.email);
+  }, [form.email]);
 
   return (
     <>
@@ -115,7 +131,7 @@ const SigninPage = () => {
                   </p>
                   <span className="bg-body-color/50 hidden h-[1px] w-full max-w-[70px] sm:block"></span>
                 </div>
-                 {message && (
+                {message && (
                   <div className="mb-6 rounded bg-red-100 px-4 py-3 font-semibold text-red-800">
                     {message}
                   </div>

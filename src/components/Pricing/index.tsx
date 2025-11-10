@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SectionTitle from "../Common/SectionTitle";
 import OfferList from "./OfferList";
 import PricingBox from "./PricingBox";
@@ -12,7 +12,18 @@ type Props = {
 
 const Pricing = ({ email }: Props) => {
   const [isMonthly, setIsMonthly] = useState(true);
+  const [isLogger, setLogger] = useState("");
   const router = useRouter();
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      const res = await fetch("/api/check-auth");
+      const data = await res.json();
+      setLogger(data.token || "");
+    };
+    checkAuth();
+  }),
+    [];
 
   const handleSetPlan = async (plan: string) => {
     const res = await fetch("/api/update-plan", {
@@ -22,9 +33,14 @@ const Pricing = ({ email }: Props) => {
     });
 
     if (res.ok) {
-      router.push("/signin");
+      if (isLogger) {
+        router.push("/blog");
+      } else {
+        router.push("/signin");
+      }
+      router.refresh();
     } else {
-      //setMessage(data.error || "Error al crear usuario");
+      console.log("Error update user plan");
     }
   };
 

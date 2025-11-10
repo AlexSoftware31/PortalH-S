@@ -41,14 +41,14 @@ const SignupPage = () => {
     });
 
     const data = await res.json();
-    setMessage(data.message || data.error);
+    //setMessage(data.message || data.error);
 
     if (res.ok) {
       router.push(`/pricing?email=${form.email}`);
     } else {
       setMessage(data.error || "Error al crear usuario");
+      setTimeout(() => setMessage(""), 6000);
     }
-    setTimeout(() => setMessage(""), 6000);
   };
 
   return (
