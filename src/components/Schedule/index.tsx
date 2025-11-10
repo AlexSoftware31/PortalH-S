@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import NewsLatterBox from "../Contact/NewsLatterBox";
 
 const Schedule = () => {
   const [mensaje, setMensaje] = useState("");
@@ -88,9 +89,13 @@ const Schedule = () => {
               </form>
             </div>
           </div>
+          <div className="w-full px-4 lg:w-5/12 xl:w-4/12">
+            <NewsLatterBox />
+          </div> 
         </div>
       </div>
     </section>
+    
   );
 };
 
