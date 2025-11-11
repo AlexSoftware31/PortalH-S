@@ -1,9 +1,11 @@
 "use client";
 
 import VideoModal from "@/components/video-modal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SectionTitle from "../Common/SectionTitle";
 import { Blog } from "@/types/blog";
+import TagButton from "../Blog/TagButton";
+import Goal from "@/models/Goal";
 
 const levels: ("basico" | "intermedio" | "avanzado")[] = [
   "basico",
@@ -11,9 +13,16 @@ const levels: ("basico" | "intermedio" | "avanzado")[] = [
   "avanzado",
 ];
 
+type Goal = {
+  temporal: string;
+  alcance: string;
+};
+
 export default function Video({ blog, level }: { blog: Blog; level: string }) {
   const [isOpen, setOpen] = useState(false);
   const [levelselect, setLevel] = useState(level);
+  const [token, setToken] = useState<string>("");
+  const [goals, setGoal] = useState<Goal[]>([]);
 
   const [activeVideo, setActiveVideo] = useState<string>("");
 
@@ -33,6 +42,34 @@ export default function Video({ blog, level }: { blog: Blog; level: string }) {
     const match = url.match(/(?:v=|\/embed\/|\.be\/)([\w-]{11})/);
     return match ? match[1] : url;
   };
+
+  useEffect(() => {
+    const fetchToken = async () => {
+      const res = await fetch("/api/check-auth");
+      const data = await res.json();
+      setToken(data.token || "");
+    };
+
+    fetchToken();
+  }, []);
+
+  useEffect(() => {
+    if (!blog.title || !token || token.trim() === "") return;
+
+    const getGoals = async (email: string, curso: string) => {
+      try {
+        const res = await fetch(`/api/goal?email=${email}&curso=${curso}`);
+        const data = await res.json();
+        console.log(data);
+        setGoal(Array.isArray(data) ? data : []);
+      } catch (error) {
+        console.error("Error al obtener metas:", error);
+        setGoal([]);
+      }
+    };
+
+    getGoals(token, blog.title);
+  }, [blog.title, token]);
 
   return (
     <>
@@ -63,7 +100,9 @@ export default function Video({ blog, level }: { blog: Blog; level: string }) {
                             : "bg-gray-300"
                         }`}
                       >
-                        {lvl == "basico" ? "Básico" : lvl.charAt(0).toUpperCase() + lvl.slice(1)}
+                        {lvl == "basico"
+                          ? "Básico"
+                          : lvl.charAt(0).toUpperCase() + lvl.slice(1)}
                       </button>
                     ))}
                   </div>
@@ -85,14 +124,37 @@ export default function Video({ blog, level }: { blog: Blog; level: string }) {
                       </li>
                     ))}
                   </ul>
+                  <br />
+                  {goals.length > 0 ? (
+                    <div className="items-center justify-between sm:flex">
+                      <div className="mb-5">
+                        <h4 className="text-body-color mb-3 text-sm font-medium">
+                          Metas a lograr:
+                        </h4>
+                        <div className="flex flex-wrap items-center gap-2">
+                          {goals.map((goal, index) => (
+                            <TagButton
+                              key={index}
+                              text={`${goal.temporal} - ${goal.alcance}`}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  ) : null}
                 </div>
               </div>
             </div>
           </div>
 
           <div className="absolute right-0 bottom-0 left-0 z-[-1] h-full w-full bg-[url(/images/video/shape.svg)] bg-cover bg-center bg-no-repeat">
-            {/* <div className="absolute bottom-0 left-0 right-0 z-[-1] "> */}
-            {/* <img src="/images/video/shape.svg" alt="shape" className="w-full" /> */}
+            {/* <div className="absolute right-0 bottom-0 left-0 z-[-1]">
+              <img
+                src="/images/video/shape.svg"
+                alt="shape"
+                className="w-full"
+              />
+            </div> */}
           </div>
         </div>
       </section>

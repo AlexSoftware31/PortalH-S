@@ -1,9 +1,61 @@
 "use client";
 
 import { useTheme } from "next-themes";
+import { FormEvent, useState } from "react";
 
-const NewsLatterBox = () => {
+interface FormData {
+  email: string;
+  curso: string;
+  temporal: string;
+  alcance: string;
+}
+
+type Props = {
+  email: string;
+  curso: string;
+  onRefresh: () => void;
+
+};
+
+const NewsLatterBox = ({ email, curso, onRefresh}: Props) => {
   const { theme } = useTheme();
+  const [message, setMessage] = useState<string | null>(null);
+  const [form, setForm] = useState<FormData>({
+    email: email,
+    curso: curso,
+    temporal: "",
+    alcance: "",
+  });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+  ) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    try {
+      const res = await fetch("/api/goal-create", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        setMessage("Meta guardada exitosamente 🎉");
+        setForm({ email: "", curso: "", temporal: "", alcance: "" });
+        onRefresh();
+      } else {
+        setMessage(data.error || "Ocurrió un error al guardar la meta.");
+      }
+      setTimeout(() => setMessage(""), 4000);
+    } catch (error) {
+      setMessage("Error de conexión. Intenta nuevamente.");
+    }
+  };
 
   return (
     <div className="shadow-three dark:bg-gray-dark relative z-10 rounded-xs bg-white p-8 sm:p-11 lg:p-8 xl:p-11">
@@ -13,59 +65,70 @@ const NewsLatterBox = () => {
       <p className="border-body-color/25 text-body-color mb-11 border-b pb-11 text-base leading-relaxed dark:border-white/25">
         Con metas claras, tu progreso es real.
       </p>
-      <div>
-        {/* <input
-          type="text"
-          name="name"
-          placeholder="Tipo de meta temporal"
-          className="border-stroke text-body-color focus:border-primary dark:text-body-color-dark dark:shadow-two dark:focus:border-primary mb-4 w-full rounded-xs border bg-[#f8f8f8] px-6 py-3 text-base outline-hidden dark:border-transparent dark:bg-[#2C303B] dark:focus:shadow-none"
-        /> */}
-        <div className="mb-4">
-          <label
-            htmlFor="meta-temporal"
-            className="text-body-color dark:text-body-color-dark mb-2 block text-sm font-medium"
-          >
-            Tipo de meta temporal
-          </label>
-          <select
-            id="meta-temporal"
-            className="border-stroke text-body-color focus:border-primary dark:text-body-color-dark dark:shadow-two dark:focus:border-primary w-full rounded-xs border bg-[#f8f8f8] px-6 py-3 text-base outline-hidden dark:border-transparent dark:bg-[#2C303B] dark:focus:shadow-none"
-          >
-            <option value="Semanal">Semanal</option>
-            <option value="Mensual">Mensual</option>
-          </select>
+      {message && (
+        <div className="mb-6 rounded bg-green-100 px-4 py-3 font-semibold text-green-800">
+          {message}
         </div>
+      )}
+      <form onSubmit={handleSubmit}>
+        <div>
+          <div className="mb-4">
+            <label
+              htmlFor="meta-temporal"
+              className="text-body-color dark:text-body-color-dark mb-2 block text-sm font-medium"
+            >
+              Tipo de meta temporal
+            </label>
+            <select
+              id="meta-temporal"
+              name="temporal"
+              onChange={handleChange}
+              value={form.temporal}
+              className="border-stroke text-body-color focus:border-primary dark:text-body-color-dark dark:shadow-two dark:focus:border-primary w-full rounded-xs border bg-[#f8f8f8] px-6 py-3 text-base outline-hidden dark:border-transparent dark:bg-[#2C303B] dark:focus:shadow-none"
+            >
+              <option value="">Seleccione...</option>
+              <option value="Semanal">Semanal</option>
+              <option value="Mensual">Mensual</option>
+            </select>
+          </div>
 
-        <div className="mb-4">
-          <label
-            htmlFor="meta-alcance"
-            className="text-body-color dark:text-body-color-dark mb-2 block text-sm font-medium"
-          >
-            Alcance de la meta
-          </label>
-          <select
-            id="meta-alcance"
-            className="border-stroke text-body-color focus:border-primary dark:text-body-color-dark dark:shadow-two dark:focus:border-primary w-full rounded-xs border bg-[#f8f8f8] px-6 py-3 text-base outline-hidden dark:border-transparent dark:bg-[#2C303B] dark:focus:shadow-none"
-          >
-            <option value="2 lecciones">Completar 2 lecciones</option>
-            <option value="4 lecciones">Completar 4 lecciones</option>
-            <option value="Intermedio">Alcanzar el nivel Intermedio</option>
-            <option value="Avanzado">Alcanzar el nivel Avanzado</option>
-          </select>
+          <div className="mb-4">
+            <label
+              htmlFor="meta-alcance"
+              className="text-body-color dark:text-body-color-dark mb-2 block text-sm font-medium"
+            >
+              Alcance de la meta
+            </label>
+            <select
+              id="meta-alcance"
+              name="alcance"
+              onChange={handleChange}
+              value={form.alcance}
+              className="border-stroke text-body-color focus:border-primary dark:text-body-color-dark dark:shadow-two dark:focus:border-primary w-full rounded-xs border bg-[#f8f8f8] px-6 py-3 text-base outline-hidden dark:border-transparent dark:bg-[#2C303B] dark:focus:shadow-none"
+            >
+              <option value="">Seleccione...</option>
+              <option value="Completar 2 lecciones">
+                Completar 2 lecciones
+              </option>
+              <option value="Completar 4 lecciones">
+                Completar 4 lecciones
+              </option>
+              <option value="Alcanzar el nivel Intermedio">
+                Alcanzar el nivel Intermedio
+              </option>
+              <option value="Alcanzar el nivel Avanzado">
+                Alcanzar el nivel Avanzado
+              </option>
+            </select>
+          </div>
+
+          <input
+            type="submit"
+            value="Guardar"
+            className="bg-primary shadow-submit hover:bg-primary/90 dark:shadow-submit-dark mb-5 flex w-full cursor-pointer items-center justify-center rounded-xs px-6 py-2 text-base font-medium text-white duration-300"
+          />
         </div>
-
-        {/* <input
-          type="email"
-          name="email"
-          placeholder="Seleccione el alcance de la meta"
-          className="border-stroke text-body-color focus:border-primary dark:text-body-color-dark dark:shadow-two dark:focus:border-primary mb-4 w-full rounded-xs border bg-[#f8f8f8] px-6 py-3 text-base outline-hidden dark:border-transparent dark:bg-[#2C303B] dark:focus:shadow-none"
-        /> */}
-        <input
-          type="submit"
-          value="Guardar"
-          className="bg-primary shadow-submit hover:bg-primary/90 dark:shadow-submit-dark mb-5 flex w-full cursor-pointer items-center justify-center rounded-xs px-6 py-2 text-base font-medium text-white duration-300"
-        />
-      </div>
+      </form>
 
       <div>
         <span className="absolute top-7 left-2">

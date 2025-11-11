@@ -44,7 +44,7 @@ const SigninPage = () => {
       router.refresh();
     } else {
       setMessage(data.error || "Error iniciando sesion");
-      setTimeout(() => setMessage(""), 6000);
+      setTimeout(() => setMessage(""), 5000);
     }
   };
 

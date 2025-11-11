@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { Metadata } from "next";
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -11,12 +10,6 @@ interface FormData {
   password: string;
   plan: string;
 }
-
-// export const metadata: Metadata = {
-//   title: "Harmony & Symphony",
-//   description: "Aprende, crea, conecta y vive la música con nosotros.",
-//   // other metadata
-// };
 
 const SignupPage = () => {
   const [form, setForm] = useState<FormData>({

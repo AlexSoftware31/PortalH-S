@@ -1,6 +1,7 @@
 import bcrypt from 'bcryptjs';
 import { connectDB } from '@/lib/mongodb';
 import User from '@/models/User';
+import Goal from '@/models/Goal';
 
 
 export async function createUser(email: string, password: string, name: string, plan: string) {
@@ -32,5 +33,20 @@ export async function validateUser(email: string, password: string) {
 
   const isMatch = await bcrypt.compare(password, user.password);
   return isMatch;
+
+}
+
+
+export async function createGoal(email: string, curso: string, temporal: string, alcance: string) {
+  await connectDB();
+
+  const newGoal = new Goal({
+    email,
+    curso,
+    temporal,
+    alcance
+  });
+
+  await newGoal.save();
 
 }

@@ -35,13 +35,13 @@ const DetailBlog = ({ blog }: { blog: Blog }) => {
     checkAuth();
   }, []);
 
-  const HandlerValidateSignin = () =>{
-    if(email){
+  const HandlerValidateSignin = () => {
+    if (email) {
       setIsModalOpen(true);
-    }else{
+    } else {
       router.push("/signin");
     }
-  }
+  };
 
   return (
     <>
@@ -332,14 +332,6 @@ const DetailBlog = ({ blog }: { blog: Blog }) => {
                         <TagButton text="Instrumentos" />
                       </div>
                     </div>
-                    {/* <div className="mb-5">
-                      <h5 className="text-body-color mb-3 text-sm font-medium sm:text-right">
-                        Share this post :
-                      </h5>
-                      <div className="flex items-center sm:justify-end">
-                        <SharePost />
-                      </div>
-                    </div> */}
                   </div>
                 </div>
               </div>
