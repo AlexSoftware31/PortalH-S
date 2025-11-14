@@ -8,18 +8,42 @@ type Props = {
   onRefresh: () => void;
 };
 
-const Schedule = ({ curso, onRefresh}: Props) => {
+const Schedule = ({ curso, onRefresh }: Props) => {
   const [mensaje, setMensaje] = useState("");
   const [token, setToken] = useState<string>("");
   const fechaRef = useRef<HTMLInputElement>(null);
   const horaRef = useRef<HTMLInputElement>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setMensaje("✅ Clase agendada correctamente");
+
+    await fetch("/api/send-email", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        to: token,
+        subject: "Confirmación de Clase en Vivo",
+        html: `<div style="font-family: Arial, sans-serif; padding: 16px;">
+    <h2 style="color: #2c3e50;">Confirmación de clase en vivo</h2>
+    <p>Hola,</p>
+    <p>Tu clase ha sido programada con éxito. Aquí están los detalles:</p>
+    <ul>
+      <li><strong>Fecha:</strong> ${fechaRef.current?.value}</li>
+      <li><strong>Hora:</strong> ${horaRef.current?.value}</li>
+    </ul>
+    <p>Nos vemos pronto 👋</p>
+    <p style="font-size: 12px; color: #888;">Este correo fue enviado desde una dirección no-reply. No respondas directamente.</p>
+  </div>
+`,
+      }),
+    });
+
+    setMensaje(
+      "✅ Clase agendada correctamente, verifique la confirmación en su correo.",
+    );
     if (fechaRef.current) fechaRef.current.value = "";
     if (horaRef.current) horaRef.current.value = "";
-    setTimeout(() => setMensaje(""), 4000);
+    setTimeout(() => setMensaje(""), 6000);
   };
 
   useEffect(() => {
@@ -111,7 +135,15 @@ const Schedule = ({ curso, onRefresh}: Props) => {
             </div>
           </div>
           <div className="w-full px-4 lg:w-5/12 xl:w-4/12">
-            {token ? <NewsLatterBox email={token} curso={curso} onRefresh={onRefresh} /> : <></>}
+            {token ? (
+              <NewsLatterBox
+                email={token}
+                curso={curso}
+                onRefresh={onRefresh}
+              />
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       </div>
