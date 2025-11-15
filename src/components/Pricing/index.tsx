@@ -96,7 +96,7 @@ const Pricing = ({ email }: Props) => {
         <div className="grid grid-cols-1 gap-x-8 gap-y-10 bg-center md:grid-cols-2 lg:grid-cols-2">
           <PricingBox
             packageName="Plan Básico"
-            price={isMonthly ? "800" : "5,100"}
+            price={isMonthly ? "800" : "8,160"}
             duration={isMonthly ? "mo" : "yr"}
             subtitle={
               isMonthly
@@ -130,7 +130,7 @@ const Pricing = ({ email }: Props) => {
           </PricingBox>
           <PricingBox
             packageName="Plan Premium"
-            price={isMonthly ? "1,400" : "10,200"}
+            price={isMonthly ? "1,400" : "14,280"}
             duration={isMonthly ? "mo" : "yr"}
             subtitle={
               isMonthly
