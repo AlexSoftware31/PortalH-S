@@ -6,7 +6,8 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Harmony & Symphony",
-  description: "Aprendizaje personalizado para todos los niveles de entusiastas de la música.",
+  description:
+    "Aprendizaje personalizado para todos los niveles de entusiastas de la música.",
   // other metadata
 };
 
@@ -45,7 +46,7 @@ const Blog = () => {
                 <li className="mx-1">
                   <a
                     href="#0"
-                    className="bg-body-color/15 text-body-color hover:bg-primary flex h-9 min-w-[36px] items-center justify-center rounded-md px-4 text-sm transition hover:text-white"
+                    className="bg-primary flex h-9 min-w-[36px] items-center justify-center rounded-md px-4 text-sm text-white transition"
                   >
                     1
                   </a>
