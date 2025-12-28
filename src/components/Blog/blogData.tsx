@@ -179,6 +179,49 @@ const blogData: Blog[] = [
   },
   {
     id: 5,
+    title: "Saxofón",
+    paragraph:
+      "Este curso está diseñado especialmente para principiantes que desean aprender desde cero y desarrollar una base sólida en la saxofón.",
+    image: "/images/blog/saxofon.jpg",
+    author: {
+      name: "Luisa Carderon",
+      image: "/images/blog/TestimonioWomen1.png",
+      designation: "Musico",
+    },
+    tags: ["Musica"],
+    publishDate: "12/2025",
+    description:
+      "Este curso está diseñado para que desarrolles una base sólida en teoría musical aplicada al saxofón. Aprenderás a comprender cómo funciona la música que escuchas y tocas, mientras fortaleces tu técnica instrumental. Al finalizar, te sentirás preparado para avanzar hacia la interpretación, la improvisación y el análisis musical con tu saxofón.",
+    leaning: [
+      "Lectura de notas en clave de sol aplicada al registro del saxofón.",
+      "Figuras rítmicas, compases y subdivisiones para mejorar tu precisión al tocar.",
+      "Ejercicios auditivos para reconocer intervalos, ritmos y frases melódicas características del instrumento.",
+      "Técnica instrumental básica: postura, embocadura, respiración y articulación",
+      "Introducción al análisis musical y formas compositivas.",
+      "Prácticas de improvisación sobre progresiones sencillas, aplicando escalas y modos.",
+    ],
+    videoLinks: {
+      basico: [
+        "https://www.youtube.com/watch?v=XH0A0oaS3s0",
+        "https://www.youtube.com/watch?v=n1I80bPaS2c",
+        "https://www.youtube.com/watch?v=H84ruEhxUeg",
+        "https://www.youtube.com/watch?v=AU34ituWhB0",
+        "https://www.youtube.com/watch?v=yzLNdLtZZUU",
+      ],
+      intermedio: [
+        "https://www.youtube.com/watch?v=D2ljVWl9Lbk",
+        "https://www.youtube.com/watch?v=ktE95LaGRn0",
+        "https://www.youtube.com/watch?v=VMRu9sBqvUg",
+      ],
+      avanzado: [
+        "https://www.youtube.com/watch?v=huTbYyHa13o",
+        "https://www.youtube.com/watch?v=o5F1Pglrn6c",
+        "https://www.youtube.com/watch?v=vR-bR3TQvUI",
+      ],
+    },
+  },
+  {
+    id: 6,
     title: "Teoría Musical",
     paragraph:
       "Este curso está dirigido a personas sin experiencia previa que desean comprender el lenguaje de la música desde sus fundamentos. ",
@@ -214,7 +257,7 @@ const blogData: Blog[] = [
     },
   },
   {
-    id: 6,
+    id: 7,
     title: "Canto",
     paragraph:
       "Este curso está dirigido a personas sin experiencia previa que desean aprender a cantar desde cero.",
@@ -250,6 +293,92 @@ const blogData: Blog[] = [
         "https://www.youtube.com/watch?v=5zg7eYt5YfE",
       ],
     },
+  },
+  {
+    id: 8,
+    title: "Canto Lirico",
+    paragraph:
+      "Este curso está dirigido a personas sin experiencia previa que desean aprender a cantar lirico desde cero.",
+    image: "/images/blog/lirico.jpg",
+    author: {
+      name: "Juan Sanz",
+      image: "/images/blog/author-03.png",
+      designation: "Musico",
+    },
+    tags: ["Musica"],
+    publishDate: "12/2025",
+    description:
+      "El curso está diseñado para ayudarte a descubrir tu voz, desarrollar seguridad al cantar y disfrutar del proceso con técnica, emoción y estilo propio. A través de un enfoque progresivo y práctico, desarrollarás tu técnica vocal, control respiratorio y expresividad musical. Aprenderás a conocer tu voz, afinar con precisión y cantar con confianza en distintos estilos. Al finalizar, tendrás una base sólida para seguir explorando tu potencial vocal y disfrutar del canto como forma de expresión artística.",
+    leaning: [
+      "Respiración diafragmática y control del aire",
+      "Postura corporal y relajación para cantar con libertad.",
+      "Ejercicios de vocalización y afinación",
+      "Reconocimiento de registros vocales y ampliación del rango",
+      "Interpretación de canciones sencillas en distintos géneros.",
+      "Primeras melodías y canciones completas.",
+    ],
+    videoLinks: {
+      basico: [
+        "https://www.youtube.com/watch?v=znv56Dekia4",
+        "https://www.youtube.com/watch?v=kbQ0jY0XBqM",
+        "https://www.youtube.com/watch?v=UVUwP8AqD1g",
+        "https://www.youtube.com/watch?v=4j_I4ECbJHU",
+      ],
+      intermedio: [
+        "https://www.youtube.com/watch?v=JQKjhURgWN4",
+        "https://www.youtube.com/watch?v=ReA3ohVy7XM",
+      ],
+      avanzado: [
+        "https://www.youtube.com/watch?v=7jTt1qkqg5c",
+        "https://www.youtube.com/watch?v=5zg7eYt5YfE",
+      ],
+    },
+
+  },
+  {
+    id: 9,
+    title: "Batería",
+    paragraph:
+      "Este curso está diseñado para quienes ya dominan los fundamentos de la batería y desean llevar su interpretación al siguiente nivel.",
+    image: "/images/blog/bateria.jpg",
+    author: {
+      name: "Sabino Perez",
+      image: "/images/blog/blog-men.jpg",
+      designation: "Musico",
+    },
+    tags: ["Musica"],
+    publishDate: "12/2025",
+    description:
+      "Este curso está diseñado para quienes ya dominan los fundamentos de la batería y desean llevar su interpretación al siguiente nivel. Combina teoría aplicada con ejercicios prácticos, diseñados para que avances a tu ritmo y consolides tu técnica. A través de un enfoque progresivo, desarrollarás nuevas habilidades, ampliarás tu repertorio rítmico y estarás preparado para enfrentar piezas de mayor complejidad en distintos estilos musicales.",
+    leaning: [
+      "Rudimentos intermedios (paradiddles, dobles, flams) para mejorar la agilidad y coordinación.",
+      "Patrones rítmicos avanzados en compases simples y compuestos.",
+      "Grooves y fills aplicados a estilos como rock, pop, jazz y funk",
+      "Lectura rítmica fluida y comprensión de subdivisiones más complejas",
+      "Técnicas de expresión musical: dinámica, acentos, ghost notes y control del tempo",
+      "Ejecución de piezas completas en diferentes géneros musicales.",
+    ],
+    videoLinks: {
+      basico: [
+        "https://www.youtube.com/watch?v=8BO0WTO7BxY",
+        "https://www.youtube.com/watch?v=HqQT28ro4q8",
+        "https://www.youtube.com/watch?v=gxIbjYRuoAw",
+        "https://www.youtube.com/watch?v=G4k9l4pCqt0",
+        "https://www.youtube.com/watch?v=sZx7Z_4--Yg"
+      ],
+      intermedio: [
+        "https://www.youtube.com/watch?v=9y4tajuJW6A",
+        "https://www.youtube.com/watch?v=Y4Crq9UmAA8",
+        "https://www.youtube.com/watch?v=gI8IpM5hq74"
+      ],
+      avanzado: [
+        "https://www.youtube.com/watch?v=RtLlSYzyvGA",
+        "https://www.youtube.com/watch?v=TTwihMM8j8k",
+        "https://www.youtube.com/watch?v=ELoHuc0ia0Q",
+        "https://www.youtube.com/watch?v=rNf0XPvrVl0"
+      ],
+    },
+    
   },
 ];
 export default blogData;
